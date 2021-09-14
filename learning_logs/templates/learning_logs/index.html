@@ -1,4 +1,7 @@
 {% extends 'learning_logs/base.html' %}
+{% load bootstrap4 %}
+
+<link href="../../../static/modals.css" rel="stylesheet">
 
 {% block page_header %}
   <div class="jumbotron">
@@ -8,8 +11,50 @@
     topics you're learning about. Whenever you learn something new
     about a topic, make an entry summarizing what you've learned.</p>
 
+    {% if not user.is_authenticated %}
     <a class="btn btn-lg btn-primary" href="{% url 'users:register' %}"
        role="button">Register &raquo;</a>
+    {% endif %}
   </div>
 
 {% endblock page_header %}
+{% block content %}
+<div class="modal modal-tour position-static d-block  py-4" tabindex="-1" role="dialog" id="modalTour">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content rounded-6 shadow">
+      <div class="modal-body p-5">
+        <h2 class="fw-bold mb-1">How to use?</h2>
+
+        <ul class="d-grid gap-4 my-4 list-unstyled">
+          <li class="d-flex gap-4">
+            <div>
+              <h5 class="mb-0">Create an account.</h5>
+              Don't have an account? Sign up and start to learn
+            </div>
+          </li>
+          <li class="d-flex gap-4">
+            <div>
+              <h5 class="mb-0">Add a topic.</h5>
+                What are you thirsting to learn? Add a topic about it.
+            </div>
+          </li>
+          <li class="d-flex gap-4">
+            <div>
+              <h5 class="mb-0">Add a entry.</h5>
+                What was the most important thing you learned today? Take note of it.
+            </div>
+          </li>
+          <li class="d-flex gap-4">
+            <div>
+              <h5 class="mb-0">Study</h5>
+              review what you have learned
+            </div>
+          </li>
+        </ul>
+          <a class="btn btn-lg btn-primary mt-5 w-100" href="{% url 'learning_logs:new_topic' %}"
+       role="button">Add new topic &raquo;</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
