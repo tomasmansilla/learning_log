@@ -2,11 +2,11 @@
   {% load bootstrap4 %}
 
   {% block page_header %}
-    <h2>log in to your account.</h2>
+      <h1 class="display-5 text-center">Log in to your account.</h1>
   {% endblock page_header %}
 
   {% block content %}
-
+    <div class="mt-4 text-center" style="max-width: 500px; margin: 0 auto">
     <form method="post" action="{% url 'users:login' %}" class="form">
       {% csrf_token %}
         {% bootstrap_form form %}
@@ -17,4 +17,5 @@
       <input type="hidden" name="next"
         value="{% url 'learning_logs:index' %}" />
     </form>
+    </div>
   {% endblock content %}
